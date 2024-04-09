@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-// #include "./event.cpp"
+#ifndef EVENT_H
+#define EVENT_H
 using namespace std;
 
 class event
