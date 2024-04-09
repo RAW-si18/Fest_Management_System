@@ -32,6 +32,51 @@ public:
     {
         return make_pair(id, name);
     }
+
+    void edit_str_member(string &member, const string &prompt)
+    {
+        cout << prompt;
+        cin.ignore();
+        getline(cin, member);
+    }
+
+    void edit_name()
+    {
+        int temp = 0;
+        string strc;
+        do
+        {
+            if (temp == 1)
+            {
+                strc = "Name of the company is empty.";
+            }
+            else
+            {
+                strc = "Editing Name of the company";
+            }
+            edit_str_member(name, strc + "\nEnter Sponsorer's New Name: ");
+            temp = 1;
+        } while (name.empty());
+    }
+
+    void edit_description()
+    {
+        int temp = 0;
+        string strc;
+        do
+        {
+            if (temp == 1)
+            {
+                strc = "Description of the company is empty.";
+            }
+            else
+            {
+                strc = "Editing Description of the company";
+            }
+            edit_str_member(description, strc + "\nEnter New Description: ");
+            temp = 1;
+        } while (description.empty());
+    }
 };
 
 // Initialize static variable
