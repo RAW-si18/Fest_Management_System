@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <utility> // Include for std::pair
 
 using namespace std;
 
@@ -19,18 +20,13 @@ public:
         cout << "Company Name: " << CompanyName << endl;
         cout << "Contact Information: " << contactInfo << endl;
         cout << "Company Description: " << description << endl;
-    }
-
-    void displayOrganizerDetails() const {
         cout << "Sponsor ID: " << sponsorID << endl;
-        cout << "Title Sponsor: " << (title_sponsor ? "Yes" : "No") << endl;
-        cout << "Category: Media-Partner" << category << endl;
     }
 
-protected:
-    // Attributes managed by organizers
-    bool title_sponsor; // Whether the sponsor is a title sponsor or not
-    string category;     // Other protected attributes as needed
+    // Method to return sponsorID and CompanyName
+    pair<int, string> pass() const {
+        return make_pair(sponsorID, CompanyName);
+    }
 
 private:
     // Attributes directly editable by the company
@@ -70,9 +66,7 @@ int main() {
         cout << "\nCompany Details:" << endl;
         sponsor.displayCompanyDetails();
 
-        // Display organizer details
-        cout << "\nOrganizer Details:" << endl;
-        sponsor.displayOrganizerDetails();
+       
 
         // Prompt to add another company
         cout << "\nDo you want to add another company? (Y/N): ";
