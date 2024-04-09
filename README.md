@@ -1,4 +1,4 @@
-# Fest Management System (OOPS Project)
+# Fest Management System
 #### Members:
 ```
 1. Harshit Vishnoi (2023BCS025)
