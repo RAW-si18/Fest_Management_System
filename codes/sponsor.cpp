@@ -1,78 +1,38 @@
 #include <iostream>
 #include <string>
-#include <utility> // Include for std::pair
-
+#include <utility>
 using namespace std;
 
-class Sponsor {
+class Sponsor
+{
+private:
+    string name;
+    string description;
+    int id;
+    static int next_id;
+
 public:
     // Constructor
-    Sponsor(const string &companyName, const string &contact, const string &description)
-        : CompanyName(companyName), contactInfo(contact), description(description) {
-        sponsorID = nextSponsorID++;
+    Sponsor(const string &name, const string &description)
+        : name(name), description(description)
+    {
+        id = next_id++;
     }
-
-    // Public methods for company interaction
-    void updateContactInfo(const string &newContact) { contactInfo = newContact; }
 
     // Display functions
-    void displayCompanyDetails() const {
-        cout << "Company Name: " << CompanyName << endl;
-        cout << "Contact Information: " << contactInfo << endl;
+    void display_company_details() const
+    {
+        cout << "Sponsor ID: " << id << endl;
+        cout << "Company Name: " << name << endl;
         cout << "Company Description: " << description << endl;
-        cout << "Sponsor ID: " << sponsorID << endl;
     }
 
-    // Method to return sponsorID and CompanyName
-    pair<int, string> pass() const {
-        return make_pair(sponsorID, CompanyName);
+    // Method to return id and name
+    pair<int, string> return_sponsor() const
+    {
+        return make_pair(id, name);
     }
-
-private:
-    // Attributes directly editable by the company
-    string CompanyName;
-    string contactInfo;
-    string description;
-    int sponsorID;
-
-    static int nextSponsorID; // Static variable to generate sponsor IDs
 };
 
 // Initialize static variable
-int Sponsor::nextSponsorID = 100;
-
-int main() {
-    char addMoreCompanies;
-    do {
-        // Initialize variables for sponsor details
-        string companyName, contact, d;
-
-        // Input company name
-        cout << "Enter Company Name: ";
-        getline(cin, companyName);
-
-        // Input contact information
-        cout << "Enter Contact Information: ";
-        getline(cin, contact);
-        
-        // Input company description
-        cout << "Enter company Description: ";
-        getline(cin, d);
-
-        // Create sponsor object
-        Sponsor sponsor(companyName, contact, d);
-
-        // Display company details
-        cout << "\nCompany Details:" << endl;
-        sponsor.displayCompanyDetails();
-
-       
-
-        // Prompt to add another company
-        cout << "\nDo you want to add another company? (Y/N): ";
-        cin >> addMoreCompanies;
-        cin.ignore(); // Ignore newline character from previous input
-    } while (addMoreCompanies == 'Y' || addMoreCompanies == 'y');
-
-    return 0;
-}
+int Sponsor::next_id = 1;
