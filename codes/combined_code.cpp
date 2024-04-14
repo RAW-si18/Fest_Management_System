@@ -2,9 +2,6 @@
 // #include "./event.cpp"
 using namespace std;
 
-
-
-
 class college
 {
 private:
@@ -15,24 +12,23 @@ private:
     string name;        // Name of college
 
 public:
-college()
-{
-
-}
-    college(string cate,string ads,int est_yr,string descr,string n) : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {} // constructor
+    college()
+    {
+    }
+    college(string cate, string ads, int est_yr, string descr, string n) : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {} // constructor
     void display()
     {
-        cout << "Name: " << name << endl
-             << "Address: " << address << endl;
+        cout << "Name:                            "  << name << endl
+             << "Address:                         " << address << endl;
     }
     void descr()
     {
-        cout << "Category: " << (category.empty() ? "Not Specified" : category) << endl
-             << "Established in " << establish_yr << endl
+        cout << "Category:                         " << (category.empty() ? "Not Specified" : category) << endl
+             << "Established in                    " << establish_yr << endl
              << "Description:" << endl;
         if (!description.empty())
         {
-            cout << "\t" << description << endl;
+            cout << "    "<< description << endl;
         }
         else
         {
@@ -128,11 +124,6 @@ college()
     }
 };
 
-
-
-
-
-
 class Sponsor
 {
 private:
@@ -142,19 +133,21 @@ private:
     // static int next_id;
 
 public:
-Sponsor()
-{}
+    Sponsor()
+    {
+    }
     // Constructor
     Sponsor(string name, string description)
         : name(name), description(description)
-  {}
+    {
+    }
 
     // Display functions
-    void display_sponsor_details() 
+    void display_sponsor_details()
     {
-        cout << "Sponsor ID: " << id << endl;
-        cout << "Company Name: " << name << endl;
-        cout << "Company Description: " << description << endl;
+        cout << "Sponsor ID:                        " << id << endl;
+        cout << "Company Name:                      " << name << endl;
+        cout << "Company Description:               " << description << endl;
     }
 
     // Method to return id and name
@@ -209,22 +202,6 @@ Sponsor()
     }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class event
 {
 private:
@@ -233,27 +210,27 @@ private:
     string time;              // time of the event
     string venue;             // venue of the event
     string description;       // description of the event
-    string rules;             // rules of the event 
+    string rules;             // rules of the event
     string registration_info; // info about registration
     string contact_info;      // info about contact details
     string entry_fees;        // entry fees for the event
 
 protected:
 public:
-//parametrized constructor
+    // parametrized constructor
     event(string name1, string date1, string time1, string venue1, string description1, string rules1, string registration_info1, string contact_info1, string entry_fees1)
     {
         name = name1;
-         date = date1;
-         time = time1;
-         venue = venue1;
-         description = description1;
-         rules = rules1;
-         registration_info = registration_info1;
-         contact_info = contact_info1;
-         entry_fees = entry_fees1;
+        date = date1;
+        time = time1;
+        venue = venue1;
+        description = description1;
+        rules = rules1;
+        registration_info = registration_info1;
+        contact_info = contact_info1;
+        entry_fees = entry_fees1;
     }
-    //checking for same name
+    // checking for same name
     bool same_name(string s)
     {
         if (s == name)
@@ -299,21 +276,20 @@ public:
     }
     void display_details()
     {
-        cout<<"Event details are as follows:"<<endl;
-        cout << "Name:                       " <<name<< endl;
-        cout << "Date:                       " <<date<< endl;
-        cout << "Time:                       " <<time<< endl;
-        cout << "Venue:                      " <<venue<< endl;
-        cout << "Description:                " <<description<< endl;
-        cout << "Rules:                      " <<rules<< endl;
-        cout << "Registration Information:   "<<registration_info << endl;
-        cout << "Contact Information:        " <<contact_info<< endl;
-        cout << "Entry Fees:                 "<<entry_fees << endl;
-        
+        cout << "Event details are as follows:" << endl;
+        cout << "Name:                       " << name << endl;
+        cout << "Date:                       " << date << endl;
+        cout << "Time:                       " << time << endl;
+        cout << "Venue:                      " << venue << endl;
+        cout << "Description:                " << description << endl;
+        cout << "Rules:                      " << rules << endl;
+        cout << "Registration Information:   " << registration_info << endl;
+        cout << "Contact Information:        " << contact_info << endl;
+        cout << "Entry Fees:                 " << entry_fees << endl;
     }
 };
 
-class fest :public college , public Sponsor 
+class fest : public college, public Sponsor
 {
 private:
     string name;        // Name of the fest
@@ -331,26 +307,26 @@ protected:
     vector<event> events;
 
 public:
-
     // parametrized constructor
-  fest(string ads, int est_yr, string n, string cate, string descr, string name4, string de1, string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
-    : college(cate, ads, est_yr, descr, n),
-      Sponsor(name4, de1),
-      name(name1),
-      description(description1),
-      date(date1),
-      entry_fees(entry_fees1),
-      drive_link(drive_link1),
-      insta_link(insta_link1),
-      twitter_link(twitter_link1),
-      website_link(website_link1)
-{}
+    fest(string ads, int est_yr, string n, string cate, string descr, string name4, string de1, string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
+        : college(cate, ads, est_yr, descr, n),
+          Sponsor(name4, de1),
+          name(name1),
+          description(description1),
+          date(date1),
+          entry_fees(entry_fees1),
+          drive_link(drive_link1),
+          insta_link(insta_link1),
+          twitter_link(twitter_link1),
+          website_link(website_link1)
+    {
+    }
 
     // fest(string ads, int est_yr, string n, string cate,string descr,string name4,string de1,string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
     // {
     //      college::college(cate,ads,est_yr,descr,n);
     //      Sponsor:: Sponsor(name4,de1);
-       
+
     //     name = name1;
     //     description = description1;
     //     date = date1;
@@ -395,29 +371,25 @@ public:
         website_link = website_link1;
     }
 
-
-void display_name()//function to display fest name
+    void display_name() // function to display fest name
     {
         cout << name << endl;
     }
 
-
-     void display_details()//function to display all the details of the fest
+    void display_details() // function to display all the details of the fest
     {
         college::display();
         college::descr();
         Sponsor::display_sponsor_details();
-        cout<<"Fest details are as follows:"<<endl;
-        cout << "Name:                       " <<name<< endl;
-        cout << "Date:                       " <<date<< endl;
-        cout<<"Description:                  "<<description<<endl;
-        cout<<"Entry Fees:                   "<<entry_fees<<endl;
-        cout<<"Drive Link:                   "<<drive_link<<endl;
-        cout<<"Insta Link                    "<<insta_link<<endl;
-        cout<<"Twitter Link:                 "<<twitter_link<<endl;
-        cout<<"Website Link:                 "<<website_link<<endl;
-       
-        
+        cout << "Fest details are as follows:" << endl;
+        cout << "Name:                             " << name << endl;
+        cout << "Date:                             " << date << endl;
+        cout << "Description:                      " << description << endl;
+        cout << "Entry Fees:                       " << entry_fees << endl;
+        cout << "Drive Link:                       " << drive_link << endl;
+        cout << "Insta Link                        " << insta_link << endl;
+        cout << "Twitter Link:                     " << twitter_link << endl;
+        cout << "Website Link:                     " << website_link << endl;
     }
 
     void display_events()
@@ -434,16 +406,16 @@ void display_name()//function to display fest name
             cout << "Enter the event of which you wnat to know detail information" << endl;
             string ev;
             cin >> ev;
-           int i;
-        for (i = 0; i < events.size(); i++)
-        {
-            if (events[i].same_name(ev) == true)
-                break;
-        }
-        if (i == events.size())
-            cout << "No such event is present." << endl;
+            int i;
+            for (i = 0; i < events.size(); i++)
+            {
+                if (events[i].same_name(ev) == true)
+                    break;
+            }
+            if (i == events.size())
+                cout << "No such event is present." << endl;
             else
-            events[i].display_details();
+                events[i].display_details();
         }
     }
 
@@ -565,7 +537,7 @@ void display_name()//function to display fest name
 };
 int main()
 {
-    //fest(string ads, int est_yr, string n, string cate,string descr,string name4,string de1,string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
- fest f1("morena link road,gwalior",1997,"iiitm","trash","college_of_national_importance","CocoCola","nothing","aurora","largest_cultural_fest_of_central_india","16/02/2024","700","www.google.com","www.instagram.com","www.twitter.com","www.aurora.com");
- f1.display_details();
+    // fest(string ads, int est_yr, string n, string cate,string descr,string name4,string de1,string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
+    fest f1("morena link road,gwalior", 1997, "iiitm", "trash", "college_of_national_importance", "CocoCola", "nothing", "aurora", "largest_cultural_fest_of_central_india", "16/02/2024", "700", "www.google.com", "www.instagram.com", "www.twitter.com", "www.aurora.com");
+    f1.display_details();
 }
