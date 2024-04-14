@@ -1,7 +1,3 @@
-#include <iostream>
-#include <string>
-using namespace std;
-
 class college
 {
 private:
@@ -12,27 +8,30 @@ private:
     string name;        // Name of college
 
 public:
-    college(const string &ads, int est_yr, const string &n, const string &cate = "", const string &descr = "") : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {} // constructor
+    college()
+    {
+    }
+    college(string cate, string ads, int est_yr, string descr, string n) : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {} // constructor
     void display()
     {
-        cout << "Name: " << name << endl
-             << "Address: " << address << endl;
+        cout << "Name:                            "  << name << endl
+             << "Address:                         " << address << endl;
     }
     void descr()
     {
-        cout << "Category: " << (category.empty() ? "Not Specified" : category) << endl
-             << "Established in " << establish_yr << endl
+        cout << "Category:                         " << (category.empty() ? "Not Specified" : category) << endl
+             << "Established in                    " << establish_yr << endl
              << "Description:" << endl;
         if (!description.empty())
         {
-            cout << "\t" << description << endl;
+            cout << "    "<< description << endl;
         }
         else
         {
             cout << "\tNot Specified" << endl;
         }
     }
-    void edit_str_member(string &member, const string &prompt)
+    void edit_str_member(string member, const string prompt)
     {
         cout << prompt;
         cin.ignore();
