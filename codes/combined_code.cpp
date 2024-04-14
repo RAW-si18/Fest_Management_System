@@ -19,7 +19,7 @@ college()
 {
 
 }
-    college(const string &ads, int est_yr, const string &n, const string &cate = "", const string &descr = "") : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {} // constructor
+    college(string cate,string ads,int est_yr,string descr,string n) : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {} // constructor
     void display()
     {
         cout << "Name: " << name << endl
@@ -39,7 +39,7 @@ college()
             cout << "\tNot Specified" << endl;
         }
     }
-    void edit_str_member(string &member, const string &prompt)
+    void edit_str_member(string member, const string prompt)
     {
         cout << prompt;
         cin.ignore();
@@ -139,22 +139,18 @@ private:
     string name;
     string description;
     int id;
-    static int next_id;
+    // static int next_id;
 
 public:
 Sponsor()
-{
-    
-}
+{}
     // Constructor
-    Sponsor(const string &name, const string &description)
+    Sponsor(string name, string description)
         : name(name), description(description)
-    {
-        id = next_id++;
-    }
+  {}
 
     // Display functions
-    void display_company_details() const
+    void display_sponsor_details() 
     {
         cout << "Sponsor ID: " << id << endl;
         cout << "Company Name: " << name << endl;
@@ -337,18 +333,33 @@ protected:
 public:
 
     // parametrized constructor
-    fest(string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
-    {
-        // college(const string &ads, int est_yr, const string &n, const string &cate = "", const string &descr = "") : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {}
-        name = name1;
-        description = description1;
-        date = date1;
-        entry_fees = entry_fees1;
-        drive_link = drive_link1;
-        insta_link = insta_link1;
-        twitter_link = twitter_link1;
-        website_link = website_link1;
-    }
+  fest(string ads, int est_yr, string n, string cate, string descr, string name4, string de1, string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
+    : college(cate, ads, est_yr, descr, n),
+      Sponsor(name4, de1),
+      name(name1),
+      description(description1),
+      date(date1),
+      entry_fees(entry_fees1),
+      drive_link(drive_link1),
+      insta_link(insta_link1),
+      twitter_link(twitter_link1),
+      website_link(website_link1)
+{}
+
+    // fest(string ads, int est_yr, string n, string cate,string descr,string name4,string de1,string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
+    // {
+    //      college::college(cate,ads,est_yr,descr,n);
+    //      Sponsor:: Sponsor(name4,de1);
+       
+    //     name = name1;
+    //     description = description1;
+    //     date = date1;
+    //     entry_fees = entry_fees1;
+    //     drive_link = drive_link1;
+    //     insta_link = insta_link1;
+    //     twitter_link = twitter_link1;
+    //     website_link = website_link1;
+    // }
 
     void edit_name(string name1) // function to edit name
     {
@@ -393,6 +404,9 @@ void display_name()//function to display fest name
 
      void display_details()//function to display all the details of the fest
     {
+        college::display();
+        college::descr();
+        Sponsor::display_sponsor_details();
         cout<<"Fest details are as follows:"<<endl;
         cout << "Name:                       " <<name<< endl;
         cout << "Date:                       " <<date<< endl;
@@ -551,5 +565,7 @@ void display_name()//function to display fest name
 };
 int main()
 {
-   
+    //fest(string ads, int est_yr, string n, string cate,string descr,string name4,string de1,string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
+ fest f1("morena link road,gwalior",1997,"iiitm","trash","college_of_national_importance","CocoCola","nothing","aurora","largest_cultural_fest_of_central_india","16/02/2024","700","www.google.com","www.instagram.com","www.twitter.com","www.aurora.com");
+ f1.display_details();
 }
