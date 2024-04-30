@@ -18,7 +18,7 @@ public:
     college(string cate, string ads, int est_yr, string descr, string n) : category(cate), address(ads), establish_yr(est_yr), description(descr), name(n) {} // constructor
     void display()
     {
-        cout << "Name:                            "  << name << endl
+        cout << "Name:                            " << name << endl
              << "Address:                         " << address << endl;
     }
     void descr()
@@ -28,7 +28,7 @@ public:
              << "Description:" << endl;
         if (!description.empty())
         {
-            cout << "    "<< description << endl;
+            cout << "    " << description << endl;
         }
         else
         {
@@ -202,6 +202,127 @@ public:
     }
 };
 
+class team
+{
+    string team_name;
+    string team_description;
+    string team_head;
+    vector<string> team_members_name;
+    vector<string> team_members_age;
+    vector<string> team_members_rollno;
+    vector<string> team_members_mobile_number;
+
+public:
+    team(string team_name1, string team_description1, string team_head1, string head_age, string head_rollno, string head_mobile_number)
+    {
+        team_name = team_name1;
+        team_description1 = team_description1;
+        team_head = team_head1;
+        team_members_name.push_back(team_head1);
+        team_members_age.push_back(head_age);
+        team_members_rollno.push_back(head_rollno);
+        team_members_mobile_number.push_back(head_mobile_number);
+    }
+    void change_des(string ndes)
+    {
+        team_description = ndes;
+    }
+
+    void add_member(string member_head1, string member_age, string member_rollno, string member_mobile_number)
+    {
+        team_members_name.push_back(member_head1);
+        team_members_age.push_back(member_age);
+        team_members_rollno.push_back(member_rollno);
+        team_members_mobile_number.push_back(member_mobile_number);
+    }
+    void delete_member(string mrollno)
+    {
+        int i = 0;
+        for (; i < team_members_name.size(); i++)
+        {
+            if (team_members_rollno[i] == mrollno)
+                break;
+        }
+        if (i == team_members_name.size())
+        {
+            cout << "No such member is present in the team" << endl;
+        }
+        else
+        {
+            team_members_age.erase(team_members_age.begin() + i);
+            team_members_name.erase(team_members_name.begin() + i);
+            team_members_rollno.erase(team_members_rollno.begin() + i);
+            team_members_mobile_number.erase(team_members_mobile_number.begin() + i);
+        }
+    }
+    bool same_name(string na)
+    {
+        if (na == team_name)
+            return true;
+        return false;
+    }
+    void display_team_info()
+    {
+        cout << "Team Name: " << team_name << endl;
+        cout << "Team Description: " << team_description << endl;
+    }
+    void display_member_details()
+    {
+        display_team_info();
+        for (int i = 0; i < team_members_name.size(); i++)
+        {
+            cout << i + 1 << ".\t" << team_members_name[i] << "\t" << team_members_rollno[i] << "\t" << team_members_mobile_number[i] << "\t" << team_members_age[i] << endl;
+        }
+    }
+    void update_member(string mrollno)
+    {
+        int i = 0;
+        for (; i < team_members_name.size(); i++)
+        {
+            if (team_members_rollno[i] == mrollno)
+                break;
+        }
+        if (i == team_members_name.size())
+        {
+            cout << "No such member is present in the team" << endl;
+        }
+        else
+        {
+            cout << "Enter the information you want to change" << endl;
+            cout << "1.Name" << endl;
+            cout << "2.Mobile Number" << endl;
+            cout << "3.Age" << endl;
+            int choice;
+            cin >> choice;
+            string str;
+            switch (choice)
+            {
+            case 1:
+                cout << "Enter New Name" << endl;
+                cin >> str;
+                if (i == 0)
+                    team_head = str;
+                team_members_name[i] = str;
+                break;
+            case 2:
+                cout << "Enter New Mobile Number" << endl;
+                cin >> str;
+                if (i == 0)
+                    team_members_mobile_number[i] = str;
+                break;
+            case 3:
+                cout << "Enter New Age" << endl;
+                cin >> str;
+                team_members_age[i] = str;
+                break;
+            default:
+                cout << "INVALID INPUT" << endl;
+                break;
+            }
+        }
+    }
+};
+
 class event
 {
 private:
@@ -305,6 +426,7 @@ private:
 
 protected:
     vector<event> events;
+    vector<team> teams;
 
 public:
     // parametrized constructor
@@ -336,7 +458,12 @@ public:
     //     twitter_link = twitter_link1;
     //     website_link = website_link1;
     // }
-
+    bool is_same_name(string take)
+    {
+        if (take == name)
+            return true;
+        return false;
+    }
     void edit_name(string name1) // function to edit name
     {
         name = name1;
@@ -534,10 +661,438 @@ public:
             events.erase(events.begin() + i);
         }
     }
+    void add_team()
+    {
+        string tname;
+        string tdes;
+        string thead;
+        string hage;
+        string hmobile_number;
+        string hroll_no;
+        cout << "Enter name of the team" << endl;
+        cin >> tname;
+        cout << "Enter description of the team" << endl;
+        cin >> tdes;
+        cout << "Enter name of head" << endl;
+        cin >> thead;
+        cout << "Enter age of head" << endl;
+        cin >> hage;
+        cout << "Enter roll number of head" << endl;
+        cin >> hroll_no;
+        cout << "Enter mobile number of head" << endl;
+        cin >> hmobile_number;
+
+        team newteam(tname, tdes, thead, hage, hroll_no, hmobile_number);
+        teams.push_back(newteam);
+    }
+    void update_team_info()
+    {
+        cout << "Enter team name you want to change info of" << endl;
+        string temp;
+        cin >> temp;
+        int i = 0;
+        for (; i < teams.size(); i++)
+        {
+            if (teams[i].same_name(temp) == true)
+                break;
+        }
+        if (i == teams.size())
+            cout << "INVALID NAME" << endl;
+        else
+        {
+            cout << "Enter the new description" << endl;
+            cin >> temp;
+            teams[i].change_des(temp);
+        }
+    }
+    void delete_team()
+    {
+        cout << "Enter team name you want to delete " << endl;
+        string temp;
+        cin >> temp;
+        int i = 0;
+        for (; i < teams.size(); i++)
+        {
+            if (teams[i].same_name(temp) == true)
+                break;
+        }
+        if (i == teams.size())
+            cout << "INVALID NAME" << endl;
+        else
+        {
+            teams.erase(teams.begin() + i);
+        }
+    }
+    void update_member_info()
+    {
+        cout << "Enter the name of the team you want to change member info of" << endl;
+        string temp;
+        cin >> temp;
+        int i = 0;
+        for (; i < teams.size(); i++)
+        {
+            if (teams[i].same_name(temp) == true)
+                break;
+        }
+        if (i == teams.size())
+            cout << "INVALID NAME" << endl;
+        else
+        {
+            cout << "Enter the roll no of the student" << endl;
+            cin >> temp;
+            teams[i].update_member(temp);
+        }
+    }
+    void display_teams()
+    {
+        if (teams.size() == 0)
+            cout << "THERE IS NO TEAM YET" << endl;
+        else
+        {
+            for (int i = 0; i < teams.size(); i++)
+            {
+                teams[i].display_team_info();
+            }
+            cout << "Enter the name of the team you want to see members of.." << endl;
+            string st;
+            cin >> st;
+            int i;
+            for (i = 0; i < teams.size(); i++)
+            {
+                if (teams[i].same_name(st))
+                    break;
+            }
+            if (i == teams.size())
+                cout << "NO SUCH TEAM IS PRESENT" << endl;
+            else
+                teams[i].display_member_details();
+        }
+    }
+
+    void see_members()
+    {
+        cout << "Enter the name of the team you want to see member of...." << endl;
+        string tt;
+        cin >> tt;
+        int i = 0;
+        for (; teams.size(); i++)
+        {
+            if (teams[i].same_name(tt))
+                ;
+            break;
+        }
+        if (i == teams.size())
+            cout << "THERE IS NO SUCH TEAM" << endl;
+        else
+        {
+            teams[i].display_member_details();
+        }
+    }
 };
+vector<fest> fests;
+void deep_into_fest(int i, string str)
+{
+    while (1)
+    {
+
+        cout << "WELCOME TO THE DETAILED INFORMATION OF " << str << "FEST" << endl;
+        cout << "ENTER WHICH OF THE FOLLOWING INFORMATION YOU WANT TO SEE" << endl;
+        cout << "1.EVENTS" << endl;
+        cout << "2.TEAMS" << endl;
+        cout << "3.TEAMS MEMBERS" << endl;
+        int cho;
+        cin >> cho;
+        if (cho == 1)
+        {
+            fests[i].display_events();
+        }
+        else if (cho == 2)
+        {
+            fests[i].display_teams();
+        }
+        else if (cho == 3)
+        {
+            fests[i].see_members();
+        }
+        else 
+        return;
+    }
+}
+void deep_into_fest_update(int i, string str)
+{
+    while (1)
+    {
+
+        cout << "here we will update the information of" << str << "fest" << endl;
+        cout << "ENTER ONE OF THE FOLLOWING INFORMATION" << endl;
+        cout << "1.ADD EVENT" << endl;
+        cout << "2.DELETE EVENT" << endl;
+        cout << "3.EDIT EVENT" << endl;
+        cout << "4.ADD TEAM" << endl;
+        cout << "5.DELETE TEAM" << endl;
+        cout << "6.EDIT TEAM" << endl;
+        cout << "7.EDIT TEAM MEMBER" << endl;
+        int choi;
+        cin >> choi;
+        if (choi == 1)
+        {
+            fests[i].add_event();
+        }
+        else if (choi == 2)
+        {
+            cout << "ENTER THE NAME OF THE EVENT YOU WANT TO DELETE" << endl;
+            string entered_name;
+            cin >> entered_name;
+            fests[i].delete_event(entered_name);
+        }
+        else if (choi == 3)
+        {
+            cout << "ENTER THE NAME OF THE EVENT YOU WANT TO EDIT" << endl;
+            string entered_name;
+            cin >> entered_name;
+            fests[i].edit_event(entered_name);
+        }
+        else if (choi == 4)
+        {
+            fests[i].add_team();
+        }
+        else if (choi == 5)
+        {
+            fests[i].delete_team();
+        }
+        else if (choi == 6)
+        {
+            fests[i].update_team_info();
+        }
+        else if (choi == 7)
+        {
+            fests[i].update_member_info();
+        }
+        else
+            return;
+    }
+}
+void organizer()
+{
+    while (1)
+    {
+
+        cout << "WELCOME TO FEST MANAGEMENT SYSTEM ORGANIZER PLAYGROUND" << endl;
+        cout << "WHICH OF THE FOLLOWING WOULD YOU LIKE TO DO" << endl;
+        cout << "1.CREATE A NEW ENTRY OF FEST" << endl;
+        cout << "2.VIEW THE DETAILS OF ALREADY ENTERED FEST" << endl;
+        cout << "3.UPDATE BASIC INFORMATION OF THE FEST" << endl;
+        cout << "4.VIEW DETAILED INFORMATION OF THE FEST" << endl;
+        cout << "5.UPDATE DETAILED INFORMATION OF THE FEST" << endl;
+        int choice;
+        cin >> choice;
+        string ads;
+        int est_yr;
+        string n;
+        string cate;
+        string descr;
+        string name4;
+        string de1;
+        string name1;
+        string description1;
+        string date1;
+        string entry_fees1;
+        string drive_link1;
+        string insta_link1;
+        string twitter_link1;
+        string website_link1;
+
+        if (choice == 1)
+        {
+
+            cout << "TO DO ENTRY OF A FEST ENTER THE FOLLOWING DETAILS..." << endl;
+            cout << endl;
+            cout << endl;
+            cout << "Enter the address of the college" << endl;
+            cin >> ads;
+            cout << endl;
+            cout << "Enter the establishment year" << endl;
+            cin >> est_yr;
+            cout << endl;
+            cout << "Enter the name of the college" << endl;
+            cin >> n;
+            cout << endl;
+            cout << "Enter the category of the college" << endl;
+            cin >> cate;
+            cout << endl;
+            cout << "Enter the description of the college" << endl;
+            cin >> descr;
+            cout << endl;
+            cout << "Enter the title sponsor" << endl;
+            cin >> name4;
+            cout << endl;
+            cout << "Enter the description of the title sponsor" << endl;
+            cin >> de1;
+            cout << endl;
+            cout << "Enter the name of the fest" << endl;
+            cin >> name1;
+            cout << endl;
+            cout << "Enter the description of the fest" << endl;
+            cin >> description1;
+            cout << endl;
+            cout << "Enter the date of the fest" << endl;
+            cin >> date1;
+            cout << endl;
+            cout << "Enter the entry fees of the fest" << endl;
+            cin >> entry_fees1;
+            cout << endl;
+            cout << "Enter the drive link of the fest" << endl;
+            cin >> drive_link1;
+            cout << endl;
+            cout << "Enter the instagram link of the fest" << endl;
+            cin >> insta_link1;
+            cout << endl;
+            cout << "Enter the twitter link of the fest" << endl;
+            cin >> twitter_link1;
+            cout << endl;
+            cout << "Rnter the website link of the fest" << endl;
+            cin >> website_link1;
+            cout << endl;
+            // fest f1("morena link road,gwalior", 1997, "iiitm", "trash", "college_of_national_importance", "CocoCola", "nothing", "aurora", "largest_cultural_fest_of_central_india", "16/02/2024", "700", "www.google.com", "www.instagram.com", "www.twitter.com", "www.aurora.com");
+            fest f1(ads, est_yr, n, cate, descr, name4, de1, name1, description1, date1, entry_fees1, drive_link1, insta_link1, twitter_link1, website_link1);
+            fests.push_back(f1);
+        }
+        else if (choice == 2)
+        {
+            cout << "Enter the name of the fest you want to see detail of" << endl;
+            string ent_name;
+            cin >> ent_name;
+            int i = 0;
+            for (; i < fests.size(); i++)
+            {
+                if (fests[i].is_same_name(ent_name))
+                    break;
+            }
+            if (i == fests.size())
+                cout << "NO SUCH FEST IS PRESENT" << endl;
+            else
+            {
+                fests[i].display_details();
+            }
+        }
+        else if (choice == 3)
+        {
+        }
+        else if (choice == 4)
+        {
+            cout << "Enter the name of the fest you want to see detailed information of" << endl;
+            string tt;
+            cin >> tt;
+            int i;
+            for (i = 0; i < fests.size(); i++)
+            {
+                if (fests[i].is_same_name(tt))
+                    break;
+            }
+            if (i == fests.size())
+                cout << "NO SUCH FEST IS THERE" << endl;
+            else
+                deep_into_fest(i, tt);
+        }
+        else if (choice == 5)
+        {
+            cout << "Enter the name of the fest you want to update detailed information about" << endl;
+            string tt;
+            cin >> tt;
+            int i;
+            for (i = 0; i < fests.size(); i++)
+            {
+                if (fests[i].is_same_name(tt))
+                    break;
+            }
+            if (i == fests.size())
+                cout << "NO SUCH FEST IS THERE" << endl;
+            else
+                deep_into_fest_update(i, tt);
+        }
+        else
+            return;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+        cout << endl;
+    }
+}
+void participant()
+{
+    while (1)
+    {
+
+        cout << "WELCOME TO FEST MANAGEMENT SYSTEM PARTICIPANT PLAYGROUND" << endl;
+        cout << "WHICH OF THE FOLLOWING WOULD YOU LIKE TO DO" << endl;
+        cout << "1.VIEW THE DETAILS OF ALREADY ENTERED FEST" << endl;
+        cout << "2.VIEW DETAILED INFORMATION OF THE FEST" << endl;
+        int choice;
+        cin >> choice;
+        if (choice == 1)
+        {
+            cout << "Enter the name of the fest you want to see detail of" << endl;
+            string ent_name;
+            cin >> ent_name;
+            int i = 0;
+            for (; i < fests.size(); i++)
+            {
+                if (fests[i].is_same_name(ent_name))
+                    break;
+            }
+            if (i == fests.size())
+                cout << "NO SUCH FEST IS PRESENT" << endl;
+            else
+            {
+                fests[i].display_details();
+            }
+        }
+        else if (choice == 2)
+        {
+            cout << "Enter the name of the fest you want to see detailed information of" << endl;
+            string tt;
+            cin >> tt;
+            int i;
+            for (i = 0; i < fests.size(); i++)
+            {
+                if (fests[i].is_same_name(tt))
+                    break;
+            }
+            if (i == fests.size())
+                cout << "NO SUCH FEST IS THERE" << endl;
+            else
+                deep_into_fest(i, tt);
+        }
+        else
+            return;
+    }
+}
 int main()
 {
+
     // fest(string ads, int est_yr, string n, string cate,string descr,string name4,string de1,string name1, string description1, string date1, string entry_fees1, string drive_link1, string insta_link1, string twitter_link1, string website_link1)
-    fest f1("morena link road,gwalior", 1997, "iiitm", "trash", "college_of_national_importance", "CocoCola", "nothing", "aurora", "largest_cultural_fest_of_central_india", "16/02/2024", "700", "www.google.com", "www.instagram.com", "www.twitter.com", "www.aurora.com");
-    f1.display_details();
+    // fest f1("morena link road,gwalior", 1997, "iiitm", "trash", "college_of_national_importance", "CocoCola", "nothing", "aurora", "largest_cultural_fest_of_central_india", "16/02/2024", "700", "www.google.com", "www.instagram.com", "www.twitter.com", "www.aurora.com");
+    // f1.display_details();
+    while (1)
+    {
+
+        cout << "WELCOME TO FEST MANAGEMENT SYSTEM" << endl;
+        cout << "WHAT ARE YOU?" << endl;
+        cout << "1.ORGANIZER" << endl;
+        cout << "2.PARTICIPANT" << endl;
+        int cho;
+        cin >> cho;
+        if (cho == 1)
+        {
+            organizer();
+        }
+        else if (cho == 2)
+        {
+            participant();
+        }
+        else
+        {
+            cout << "INVALID INPUT" << endl;
+        }
+    }
 }
