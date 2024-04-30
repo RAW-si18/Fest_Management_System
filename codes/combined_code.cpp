@@ -35,7 +35,7 @@ public:
             cout << "\tNot Specified" << endl;
         }
     }
-    void edit_str_member(string member, const string prompt)
+    void edit_str_member(string& member, const string prompt)
     {
         cout << prompt;
         cin.ignore();
@@ -814,8 +814,8 @@ void deep_into_fest(int i, string str)
         {
             fests[i].see_members();
         }
-        else 
-        return;
+        else
+            return;
     }
 }
 void deep_into_fest_update(int i, string str)
@@ -910,49 +910,34 @@ void organizer()
             cout << endl;
             cout << "Enter the address of the college" << endl;
             cin >> ads;
-            cout << endl;
             cout << "Enter the establishment year" << endl;
             cin >> est_yr;
-            cout << endl;
             cout << "Enter the name of the college" << endl;
             cin >> n;
-            cout << endl;
             cout << "Enter the category of the college" << endl;
             cin >> cate;
-            cout << endl;
             cout << "Enter the description of the college" << endl;
             cin >> descr;
-            cout << endl;
             cout << "Enter the title sponsor" << endl;
             cin >> name4;
-            cout << endl;
             cout << "Enter the description of the title sponsor" << endl;
             cin >> de1;
-            cout << endl;
             cout << "Enter the name of the fest" << endl;
             cin >> name1;
-            cout << endl;
             cout << "Enter the description of the fest" << endl;
             cin >> description1;
-            cout << endl;
             cout << "Enter the date of the fest" << endl;
             cin >> date1;
-            cout << endl;
             cout << "Enter the entry fees of the fest" << endl;
             cin >> entry_fees1;
-            cout << endl;
             cout << "Enter the drive link of the fest" << endl;
             cin >> drive_link1;
-            cout << endl;
             cout << "Enter the instagram link of the fest" << endl;
             cin >> insta_link1;
-            cout << endl;
             cout << "Enter the twitter link of the fest" << endl;
             cin >> twitter_link1;
-            cout << endl;
             cout << "Rnter the website link of the fest" << endl;
             cin >> website_link1;
-            cout << endl;
             // fest f1("morena link road,gwalior", 1997, "iiitm", "trash", "college_of_national_importance", "CocoCola", "nothing", "aurora", "largest_cultural_fest_of_central_india", "16/02/2024", "700", "www.google.com", "www.instagram.com", "www.twitter.com", "www.aurora.com");
             fest f1(ads, est_yr, n, cate, descr, name4, de1, name1, description1, date1, entry_fees1, drive_link1, insta_link1, twitter_link1, website_link1);
             fests.push_back(f1);
@@ -977,6 +962,123 @@ void organizer()
         }
         else if (choice == 3)
         {
+            cout << "Enter the name of the fest you want to see detail of" << endl;
+            string ent_name;
+            cin >> ent_name;
+            int i = 0;
+            for (; i < fests.size(); i++)
+            {
+                if (fests[i].is_same_name(ent_name))
+                    break;
+            }
+            if (i == fests.size())
+                cout << "NO SUCH FEST IS PRESENT" << endl;
+            else
+            {
+                cout << "ENTER THE VALUE YOU WANT TO COMMIT CHANGE TO" << endl;
+                cout << "1.ADDRESS" << endl;
+                cout << "2.ESTABLISHMENT YEAR" << endl;
+                cout << "3.NAME OF COLLEGE" << endl;
+                cout << "4.CATEGORY OF COLLEGE" << endl;
+                cout << "5.DESCRIPTION OF COLLEGE" << endl;
+                cout << "6.TITLE SPONSOR OF COLLEGE" << endl;
+                cout << "7.DESCRIPTION OF TITLE SPONSOR OF COLLEGE" << endl;
+                cout << "8.NAME OF THE FEST" << endl;
+                cout << "8.DESCRIPTION OF THE FEST" << endl;
+                cout << "10.DATE OF THE FEST" << endl;
+                cout << "11.ENTRY FEES OF THE FEST" << endl;
+                cout << "12.DRIVE LINK OF THE FEST" << endl;
+                cout << "13.INSTAGRAM LINk OF THE FEST" << endl;
+                cout << "14.TWITTER LINK OF THE FEST" << endl;
+                cout << "15.WEBSITE LINK OF THE FEST" << endl;
+                int choice;
+                cin >> choice;
+                if (choice == 1)
+                {
+                    fests[i].edit_address();
+                }
+                else if (choice == 2)
+                {
+                    fests[i].edit_est_year();
+                }
+                else if (choice == 3)
+                {
+                    fests[i].college::edit_name();
+                }
+                else if (choice == 4)
+                {
+                    fests[i].college::edit_category();
+                }
+                else if (choice == 5)
+                {
+                    fests[i].college::edit_description();
+                }
+                else if (choice == 6)
+                {
+                    cout << "CANT BE CHANGED" << endl;
+                }
+                else if (choice == 7)
+                {
+                    cout << "CANT BE CHANGED" << endl;
+                }
+                else if (choice == 8)
+                {
+                    cout << "Enter new name" << endl;
+                    string s;
+                    cin >> s;
+
+                    fests[i].edit_name(s);
+                }
+                else if (choice == 9)
+                {
+                    cout << "Enter new description" << endl;
+                    string s;
+                    cin >> s;
+                    fests[i].edit_description(s);
+                }
+                else if (choice == 10)
+                {
+                    cout << "Enter new date" << endl;
+                    string s;
+                    cin >> s;
+                    fests[i].edit_date(s);
+                }
+                else if (choice == 11)
+                {
+                    cout << "Enter new entry fees" << endl;
+                    string s;
+                    cin >> s;
+                    fests[i].edit_entry_fees(s);
+                }
+                else if (choice == 12)
+                {
+                    cout<<"Enter new drive link"<<endl;
+                string s;
+                cin>>s;
+                fests[i].edit_drive_link(s);
+                }
+                else if (choice == 13)
+                {
+                    cout<<"Enter new intagram link"<<endl;
+                string s;
+                cin>>s;
+                fests[i].edit_insta_link(s);
+                }
+                else if (choice == 14)
+                {
+                    cout<<"Enter new twitter link"<<endl;
+                string s;
+                cin>>s;
+                fests[i].edit_twitter_link(s);
+                }
+                else if (choice == 15)
+                {
+                    cout<<"Enter new website link"<<endl;
+                string s;
+                cin>>s;
+                    fests[i].edit_website_link(s);
+                }
+            }
         }
         else if (choice == 4)
         {
