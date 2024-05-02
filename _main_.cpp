@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
-#include "../header_files/event.h"
-#include "../header_files/fest.h"
-#include "../header_files/college.h"
-#include "../header_files/team.h"
-#include "../header_files/check_condition.h"
-#include "../header_files/funcs.h"
+#include "./header_files/event.h"
+#include "./header_files/fest.h"
+#include "./header_files/college.h"
+#include "./header_files/team.h"
+#include "./header_files/check_condition.h"
+#include "./header_files/funcs.h"
 
 using namespace std;
 
