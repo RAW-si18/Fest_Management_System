@@ -1,17 +1,4 @@
 # Fest Management System
-#### Members:
-```
-1. Harshit Vishnoi (2023BCS025)
-2. Ryan Madhuwala (2023BCS057)
-3. Suyash Agrawal (2023BCS067)
-4. Rachit Agrawal (2023BCS052)
-5. Shubham Sharma (2023BCS062)
-6. Abhinav Vats (2023BCS002)
-7. Ajay Singh (2023BCS004)
-8. Prince Kumar (2023BCS050)
-9. Rohit (2023BCS056)
-10. Shrey Gupta (2023BMS028)
-```
 
 ---
 
